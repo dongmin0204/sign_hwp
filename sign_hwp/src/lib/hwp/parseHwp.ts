@@ -1,7 +1,9 @@
-import { initHwp } from './initHwp';
-
+// src/lib/hwp/parseHwp.ts
 export async function parseHwp(buffer: ArrayBuffer): Promise<string> {
-  const hwp = await initHwp();
-  // 실제 hwp.js API에 맞게 수정 필요
-  return hwp.parse(buffer); // 예: HTML string 반환
+  // @ts-ignore
+  if (!window.HWP || typeof window.HWP.parse !== 'function') {
+    throw new Error('hwp.js가 로드되지 않았거나 parse 함수가 없습니다.');
+  }
+  // @ts-ignore
+  return await window.HWP.parse(buffer);
 } 

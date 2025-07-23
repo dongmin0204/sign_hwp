@@ -1,6 +1,1 @@
-import * as HWP from 'hwp.js';
-
-export const initHwp = () =>
-  HWP.init({
-    locateFile: (f: string) => `/hwp-wasm/${f}`,
-  }); 
+// hwp.js 0.0.3 버전은 별도의 init 함수가 필요하지 않습니다. 
