@@ -13,6 +13,7 @@
     "@radix-ui/react-progress": "^1.1.7",
     "@tanstack/react-query": "^5.82.0",
     "axios": "^1.10.0",
+    "hwp.js": "^0.0.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-dropzone": "^14.3.8",
@@ -35,6 +36,8 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.3",
+    "vite-plugin-top-level-await": "^1.6.0",
+    "vite-plugin-wasm": "^3.5.0",
     "zod": "^4.0.1"
   }
 }
