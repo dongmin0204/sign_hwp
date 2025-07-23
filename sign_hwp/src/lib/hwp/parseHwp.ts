@@ -1,9 +1,20 @@
 // src/lib/hwp/parseHwp.ts
+import * as HWP from 'hwp.js';
+
+let readyPromise: Promise<void> | null = null;
+
 export async function parseHwp(buffer: ArrayBuffer): Promise<string> {
-  // @ts-ignore
-  if (!window.HWP || typeof window.HWP.parse !== 'function') {
-    throw new Error('hwp.js가 로드되지 않았거나 parse 함수가 없습니다.');
+  // hwp.js 모듈 초기화 대기
+  if (!readyPromise) {
+    // @ts-ignore - hwp.js는 ready 프로퍼티를 제공
+    readyPromise = HWP.ready instanceof Promise ? HWP.ready : Promise.resolve();
   }
-  // @ts-ignore
-  return await window.HWP.parse(buffer);
-} 
+  await readyPromise;
+
+  if (typeof (HWP as any).parse !== 'function') {
+    throw new Error('hwp.js parse 함수를 찾을 수 없습니다.');
+  }
+
+  // @ts-ignore - parse 반환값은 문자열
+  return HWP.parse(buffer);
+}
