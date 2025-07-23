@@ -1,3 +1,4 @@
 declare module 'hwp.js' {
-  export function init(opts: { locateFile: (f: string) => string }): Promise<any>;
-} 
+  export const ready: Promise<void>;
+  export function parse(buffer: ArrayBuffer): string;
+}
